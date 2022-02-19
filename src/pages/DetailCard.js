@@ -27,7 +27,7 @@ export default function DetailCard({ dataPost }) {
             </Col>
 
             <Col lg={6} md={12} xs={12}>
-              <EmailCard />
+              <EmailCard data={data} />
             </Col>
           </Row>
           <hr className="my-4" />

@@ -1,8 +1,16 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AiOutlineEnvironment } from "react-icons/ai";
 
-export default function CategoryCard({ id, photos, title, date }) {
+export default function CategoryCard({
+  id,
+  photos,
+  company,
+  ubication,
+  category,
+  rate,
+}) {
   return (
     <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
       <Card
@@ -14,22 +22,30 @@ export default function CategoryCard({ id, photos, title, date }) {
           backgroundClip: "border-box",
           border: "1px solid rgba(0,0,0,.125)",
           borderRadius: "0.25rem",
+          maxHeight: "400px",
         }}
       >
         <Card.Img
           variant="top"
           style={{
-            minWidth: "50%",
-            height: "150px",
+            // minWidth: "50%",
+            // maxHeight: "130px",
+            height: "130px",
             objectFit: "cover",
           }}
-          src={photos}
+          src={photos[0]}
           className="rounded"
         />
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
+          <Card.Title>{company}</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up
+            <p>{category}</p>
+            <p>
+              <AiOutlineEnvironment /> {ubication}
+            </p>
+            <p>
+              <strong>Desde: </strong>S/ {rate}
+            </p>
           </Card.Text>
         </Card.Body>
         <Card.Footer className="text-muted">

@@ -1,12 +1,67 @@
-import React from "react";
-import { Container, Alert, Button, FloatingLabel, Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, FloatingLabel, Alert, Form } from "react-bootstrap";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function EmailCard() {
+export default function EmailCard({ data }) {
+  const [message, setMessage] = useState("");
+  const [alert, setAlert] = useState();
+  let navigate = useNavigate();
+  const [formValues, setFormValues] = useState({
+    name: "",
+    mail: "",
+    subject: "",
+    body: "",
+  });
+
+  const handleInputChange = ({ target }) => {
+    setFormValues((state) => ({ ...state, [target.name]: target.value }));
+  };
+  const handleForm = (e) => {
+    e.preventDefault();
+
+    const newEmail = {
+      name: formValues.name,
+      mail: formValues.mail,
+      subject: formValues.subject,
+      body: formValues.body,
+      emailcompany: data.user.email,
+    };
+
+    axios
+      .post(
+        `${process.env.REACT_APP_BASE_API_URL}/api/v1/posts/sendemail`,
+        newEmail
+      )
+      .then(({ data }) => {
+        if (data.error) {
+          setMessage(data.message);
+          setAlert(data.error);
+        } else {
+          setMessage("se envio con éxito");
+          setAlert("se envio con éxito");
+          setTimeout(() => {
+            navigate(`/categories`);
+          }, 1500);
+        }
+      });
+  };
   return (
     <div className="auth-wrapper">
+      {alert && (
+        <Alert
+          variant="danger"
+          onClose={() => {
+            setAlert(false);
+          }}
+          dismissible
+        >
+          <p>{message}</p>
+        </Alert>
+      )}
       <div className="auth-inner">
         <form
-          onSubmit=""
+          onSubmit={handleForm}
           noValidate
           autoComplete="off"
           className="justify-content-center text-center"
@@ -21,7 +76,8 @@ export default function EmailCard() {
             >
               <Form.Control
                 type="name"
-                // onChange={handleNewUsername}
+                name="name"
+                onChange={handleInputChange}
                 data-test-id="newusername-login-form"
               />
             </FloatingLabel>
@@ -32,8 +88,9 @@ export default function EmailCard() {
             >
               <Form.Control
                 type="email"
+                name="mail"
                 placeholder="name@example.com"
-                // onChange={handleEmail}
+                onChange={handleInputChange}
                 data-test-id="email-login-form"
               />
             </FloatingLabel>
@@ -44,8 +101,9 @@ export default function EmailCard() {
             >
               <Form.Control
                 type="text"
+                name="subject"
                 placeholder="Solicito cotización"
-                // onChange={handleNewPassword}
+                onChange={handleInputChange}
                 data-test-id="password-login-form"
               />
             </FloatingLabel>
@@ -54,7 +112,8 @@ export default function EmailCard() {
                 as="textarea"
                 rows={3}
                 type="text"
-                // onChange={handleInputChange}
+                name="body"
+                onChange={handleInputChange}
               />
             </FloatingLabel>
             <Button

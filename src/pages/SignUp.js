@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setSession, setToken } from "../user/session";
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../index.css";
 
 import axios from "axios";
 import { Container, Alert, Button, FloatingLabel, Form } from "react-bootstrap";

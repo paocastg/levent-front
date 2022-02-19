@@ -20,8 +20,10 @@ export default function HeadBoard({ data }) {
   const [deletePost, setDeletePost] = useState(false);
   const auth = useAuth();
   const token = getToken();
-  const url = `https://api.whatsapp.com/send?phone=${data.user?.number}&text=Hola,%20quisiera%20conocer%20m%C3%A1s%20detalles%20acerca%20del%20post%20que%20publicaste%20en%20Wayki%20App.`;
-
+  const url = `https://api.whatsapp.com/send?phone=${data.user?.number}&text=Hola,%20quisiera%20cotizar%20mi%20evento`;
+  const urlFb = data.links.facebook;
+  const urlIg = data.links.instagram;
+  const urlPw = data.links.page;
   const handleDeletePost = () => {
     axios
       .delete(`${config.BASE_API_URL}/api/v1/posts/${id}`, {
@@ -79,7 +81,7 @@ export default function HeadBoard({ data }) {
       )}
       <Col lg={6} md={12} xs={12}>
         <h2>
-          {data.title}{" "}
+          {data.company}{" "}
           {auth.userLogin?.id === data.user?.id && (
             <Button variant="light" onClick={() => setAlert(true)}>
               <AiFillDelete />
@@ -90,34 +92,34 @@ export default function HeadBoard({ data }) {
         <div className="d-flex gap-5 py-2">
           <span>
             <strong> Categoria: </strong>
-            {data.characteristics["color"]}
+            {data.category}
           </span>
           <span>
-            <AiOutlineEnvironment /> {data.characteristics["name"]}
+            <AiOutlineEnvironment /> {data.ubication}
           </span>
         </div>
 
         <h6>
           <strong>Precio desde:</strong> S/
           <span className="badge rounded-pill bg-secondary m-1">
-            {data.tags}
+            {data.rate}
           </span>
         </h6>
       </Col>
       <Col>
         <p>
-          <Button variant="light" href={url}>
+          <Button variant="light" href={url} target="_blank">
             <AiOutlineWhatsApp />
           </Button>{" "}
-          <Button variant="light" href={url}>
+          <Button variant="light" href={urlFb} target="_blank">
             <AiOutlineFacebook />
           </Button>
           {"  "}
-          <Button variant="light" href={url}>
+          <Button variant="light" href={urlIg} target="_blank">
             <AiOutlineInstagram />
           </Button>
           {"  "}
-          <Button variant="light" href={url}>
+          <Button variant="light" href={urlPw} target="_blank">
             Sitio Web
           </Button>
         </p>

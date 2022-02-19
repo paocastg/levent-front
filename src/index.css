@@ -59,14 +59,4 @@ body, html, .App, #root, .auth-wrapper
  { font-weight: 400;
 }
 
-.forgot-password,
-.forgot-password a 
-  {text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #cacaca;
-  margin: 0;}
 
-
-.forgot-password a 
- { color: #FDAFAB;}

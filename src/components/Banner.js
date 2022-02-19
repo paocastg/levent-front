@@ -1,23 +1,22 @@
 import React from "react";
-import { Card, Image } from "react-bootstrap";
-import photo from "../assets/6.jpg";
+import { Card } from "react-bootstrap";
+import { AiOutlineEnvironment } from "react-icons/ai";
 
-export default function Banner() {
+export default function Banner({ id, company, category, ubication, photo }) {
   return (
-    <Card>
-      <Card.Img
-        variant="top"
-        className="featured-image img-fluid"
-        src={photo}
-      />
+    <Card key={id} className="p-1 me-1">
+      <Card.Img variant="top" src={photo} />
       <Card.Body>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          <p>{category}</p>
+          <p>
+            <AiOutlineEnvironment />
+            {ubication}
+          </p>
         </Card.Text>
       </Card.Body>
       <Card.Footer className="text-muted">
-        <Image
+        {/* <Image
           className="author-thumb"
           style={{
             width: "40px",
@@ -28,8 +27,8 @@ export default function Banner() {
           src={photo}
           alt="Sal"
           roundedCircle
-        />
-        sal
+        /> */}
+        {company}
       </Card.Footer>
     </Card>
   );

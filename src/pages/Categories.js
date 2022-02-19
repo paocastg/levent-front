@@ -1,22 +1,15 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {
-  Col,
-  Form,
-  Row,
-  Container,
-  Accordion,
-  ListGroup,
-  ard,
-} from "react-bootstrap";
-import PetCard from "../components/CategoryCard";
+import { Form, Row, Container, Accordion } from "react-bootstrap";
+import CategoryCard from "../components/CategoryCard";
 
 export default function Categories({ posts, setPosts }) {
   const [queryParams, setQueryParams] = useState({
-    type: "",
+    ubication: "",
+    category: "",
     limit: "10",
-    title: "",
+    company: "",
   });
   const [shallowSearch, setShallowSearch] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -28,7 +21,7 @@ export default function Categories({ posts, setPosts }) {
     if (searchInput) {
       let lookupText = new RegExp(searchInput, "i");
       let justFilteredPosts = posts.filter((post) =>
-        lookupText.test(post.title)
+        lookupText.test(post.company)
       );
       setFilteredPosts(justFilteredPosts);
     } else {
@@ -82,70 +75,56 @@ export default function Categories({ posts, setPosts }) {
             <Form.Control
               className="mb-3"
               size="lg"
-              name="title"
+              name="company"
               type="text"
-              placeholder="Buscar por titulo"
+              placeholder="Buscar por empresa"
               onChange={handleShallowSearch}
               value={shallowSearch}
             />
             <Form.Select
               className="mb-3"
-              name="type"
+              name="ubication"
               onChange={handleInputChange}
-              value={queryParams.type}
+              value={queryParams.ubication}
             >
               <option value="">Ubicación</option>
-              <option value="amazonas">Amazonas</option>
-              <option value="ancash">Ancash</option>
-              <option value="apurimac">Apurimac</option>
-              <option value="arequipa">Arequipa</option>
-              <option value="ayacucho">Ayacucho</option>
-              <option value="cajamarca">Cajamarca</option>
-              <option value="callao">Callao</option>
-              <option value="cusco">Cusco</option>
-              <option value="huancavelica">Huancavelica </option>
-              <option value="huanuco">Huanuco</option>
-              <option value="ica">Ica</option>
-              <option value="junin">Junín</option>
-              <option value="lalibertad">La Libertad</option>
-              <option value="lambayeque">Lambayeque</option>
-              <option value="lima">Lima</option>
-              <option value="loreto">Loreto</option>
-              <option value="madrededios">Madre de Dios</option>
-              <option value="moquegua">Moquegua</option>
-              <option value="pasco">Pasco </option>
-              <option value="piura">Piura</option>
-              <option value="puno">Puno</option>
-              <option value="sanmartin">San Martín</option>
-              <option value="tacna">Tacna</option>
-              <option value="tumbes">Tumbes</option>
-              <option value="ucayali">Ucayali</option>
+              <option value="Amazonas">Amazonas</option>
+              <option value="Ancash">Ancash</option>
+              <option value="Apurimac">Apurimac</option>
+              <option value="Arequipa">Arequipa</option>
+              <option value="Ayacucho">Ayacucho</option>
+              <option value="Cajamarca">Cajamarca</option>
+              <option value="Callao">Callao</option>
+              <option value="Cusco">Cusco</option>
+              <option value="Huancavelica">Huancavelica </option>
+              <option value="Huanuco">Huanuco</option>
+              <option value="Ica">Ica</option>
+              <option value="Junin">Junín</option>
+              <option value="La Libertad">La Libertad</option>
+              <option value="Lambayeque">Lambayeque</option>
+              <option value="Lima">Lima</option>
+              <option value="Loreto">Loreto</option>
+              <option value="Madre de Dios">Madre de Dios</option>
+              <option value="Moquegua">Moquegua</option>
+              <option value="Pasco">Pasco </option>
+              <option value="Piura">Piura</option>
+              <option value="Puno">Puno</option>
+              <option value="San Martín">San Martín</option>
+              <option value="Tacna">Tacna</option>
+              <option value="Tumbes">Tumbes</option>
+              <option value="Ucayali">Ucayali</option>
             </Form.Select>
             <Accordion defaultActiveKey="0" className="mb-3">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Categorías</Accordion.Header>
                 <Accordion.Body>
-                  <button className="btn w-100 mb-2">Catering</button>
-                  <button className="btn w-100 mb-2">Event Planner</button>
-                  <button className="btn w-100 mb-2">Fotografía y Video</button>
-                  <button className="btn w-100 mb-2">Música y Animación</button>
-                  <button className="btn w-100 mb-2">
-                    Decoración de eventos
-                  </button>
-                  <button className="btn w-100 mb-2">Florerias</button>
-                  <button className="btn w-100 mb-2">Vestidos</button>
-                  <button className="btn w-100 mb-2">Ternos</button>
-                  <button className="btn w-100 mb-2">Recepciones</button>
-                  <button className="btn w-100 mb-2">Accesorios</button>
-                  <button className="btn w-100 mb-2">Recuerdos</button>
-                  <button className="btn w-100 mb-2">Movilidad</button>
-                  <button className="btn w-100 mb-2">Invitaciones</button>
-                  <button className="btn w-100 mb-2">Mobiliario</button>
-                  <button className="btn w-100 mb-2">Open Bar</button>
-                  <button className="btn w-100 mb-2">
-                    Food truck y mesas de dulces
-                  </button>
-                  <button className="btn w-100 mb-2">Pasteleria</button>
+                  <option value="Cattering">Cattering</option>
+                </Accordion.Body>
+                <Accordion.Body>
+                  <option value="Event Planner">Event Planner</option>
+                </Accordion.Body>
+                <Accordion.Body>
+                  <option value="Fotografia">Fotografia</option>
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
@@ -153,17 +132,21 @@ export default function Categories({ posts, setPosts }) {
           <div className="col-md-9">
             {filteredPosts.length ? (
               <Row className="d-flex justify-content-center row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-                {filteredPosts.map(({ id, title, createdAt: date, photos }) => {
-                  return (
-                    <PetCard
-                      key={id}
-                      id={id}
-                      title={title}
-                      photos={photos}
-                      date={date}
-                    />
-                  );
-                })}
+                {filteredPosts.map(
+                  ({ id, company, ubication, category, rate, photos }) => {
+                    return (
+                      <CategoryCard
+                        key={id}
+                        id={id}
+                        company={company}
+                        photos={photos}
+                        ubication={ubication}
+                        category={category}
+                        rate={rate}
+                      />
+                    );
+                  }
+                )}
               </Row>
             ) : (
               <div>No se encontraron resultados</div>

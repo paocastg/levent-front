@@ -9,29 +9,27 @@ import {
   Alert,
 } from "react-bootstrap";
 import axios from "axios";
-import profileIcon from "../assets/blank-profile.png";
+import profileIcon from "../assets/landscape-placeholder.png";
 import { useNavigate } from "react-router-dom";
 import config from "../config";
-import useAuth from "../auth/useAuth";
+
 import { getToken } from "../user/session";
 
 export default function CreateCard({ posts, setDataPost }) {
   const [alert, setAlert] = useState({ status: false, message: "", type: "" });
   const [isUploaded, setIsUploaded] = useState(false);
-  const auth = useAuth();
+
   let navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({
-    title: "",
-    name: "",
-    type: "",
-    tags: "",
-    sex: "",
-    color: "",
-    size: "",
-    age: "",
-    reference: "",
+    company: "",
+    category: "",
+    ubication: "",
     description: "",
+    facebook: "",
+    instagram: "",
+    page: "",
+    rate: "",
     photos: [],
   });
   const token = getToken();
@@ -66,18 +64,15 @@ export default function CreateCard({ posts, setDataPost }) {
   const onSubmitForm = (e) => {
     e.preventDefault();
     const newPost = {
-      characteristics: {
-        name: formValues.name,
-        age: formValues.age,
-        color: formValues.color,
-        sex: formValues.sex,
-        size: formValues.size,
+      links: {
+        facebook: formValues.facebook,
+        instagram: formValues.instagram,
+        page: formValues.page,
       },
-      location: formValues.reference,
-
-      title: formValues.title,
-      type: formValues.type,
-      tags: formValues.tags.split(" "),
+      company: formValues.company,
+      category: formValues.category,
+      ubication: formValues.ubication,
+      rate: formValues.rate,
       description: formValues.description,
       mainPhoto: 0,
       photos: formValues.photos,
@@ -112,137 +107,167 @@ export default function CreateCard({ posts, setDataPost }) {
             <p>{alert.message}</p>
           </Alert>
         )}
-        <h2>{auth.userLogin.username}, crea tu anuncio </h2>
+        <h2> Crea tu anuncio </h2>
 
-        <Col lg={7} className="mt-5">
+        <Col lg={6} className="mt-5">
           <Form onSubmit={onSubmitForm} noValidate autoComplete="off">
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="2">
+              <Form.Label column sm="3">
                 Empresa:
               </Form.Label>
-              <Col sm="10">
+              <Col sm="9">
                 <Form.Control
                   placeholder="Ejm: Rustic Art Decoraciones"
                   type="text"
-                  name="title"
+                  name="company"
                   onChange={handleInputChange}
-                  value={formValues.title}
+                  value={formValues.company}
                   data-test-id="title-post-form"
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="2">
-                Página Web:
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  placeholder=""
-                  type="text"
-                  name="name"
-                  onChange={handleInputChange}
-                  value={formValues.name}
-                  data-test-id="name-post-form"
-                />
-              </Col>
-            </Form.Group>
 
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="2">
+              <Form.Label column sm="3">
                 Categoria:
               </Form.Label>
-              <Col sm="10">
+              <Col sm="9">
                 <Form.Select
-                  name="size"
+                  name="category"
                   onChange={handleInputChange}
-                  value={formValues.size}
+                  value={formValues.category}
                   data-test-id="size-select-form"
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="XS">Cattering</option>
-                  <option value="S">Event Planner</option>
-                  <option value="M">Fotografia</option>
-                  <option value="L">Video</option>
-                  <option value="XL">Música Animación</option>
-                  <option value="">Decoración de eventos</option>
-                  <option value="XS">Florerias</option>
-                  <option value="S">Vestidos</option>
-                  <option value="M">Ternos</option>
-                  <option value="L">Recepciones</option>
-                  <option value="XL">Accesorios</option>
-                  <option value="XL">Recuerdos</option>
-                  <option value="">Movilidad</option>
-                  <option value="XS">Invitaciones</option>
-                  <option value="S">Mobiliario</option>
-                  <option value="M">Open Bar</option>
-                  <option value="L">Food truck y mesas de dulces</option>
-                  <option value="XL">Pasteleria</option>
+                  <option value="Cattering">Cattering</option>
+                  <option value="Event Planner">Event Planner</option>
+                  <option value="Fotografia">Fotografia</option>
+                  <option value="Video">Video</option>
+                  <option value="Música Animación">Música Animación</option>
+                  <option value="Decoración de eventos">
+                    Decoración de eventos
+                  </option>
+                  <option value="Florerias">Florerias</option>
+                  <option value="Vestidos">Vestidos</option>
+                  <option value="Ternos">Ternos</option>
+                  <option value="Recepciones">Recepciones</option>
+                  <option value="Accesorios">Accesorios</option>
+                  <option value="Recuerdos">Recuerdos</option>
+                  <option value="Movilidad">Movilidad</option>
+                  <option value="Invitaciones">Invitaciones</option>
+                  <option value="Mobiliario">Mobiliario</option>
+                  <option value="Open Bar">Open Bar</option>
+                  <option value="Food truck">Food truck</option>
+                  <option value="Pasteleria">Pasteleria</option>
                 </Form.Select>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="2">
+              <Form.Label column sm="3">
+                Ubicación:
+              </Form.Label>
+              <Col sm="9">
+                <Form.Select
+                  name="ubication"
+                  onChange={handleInputChange}
+                  value={formValues.ubication}
+                  data-test-id="sex-select-form"
+                >
+                  <option value="">Ubicación</option>
+                  <option value="Amazonas">Amazonas</option>
+                  <option value="Ancash">Ancash</option>
+                  <option value="Apurimac">Apurimac</option>
+                  <option value="Arequipa">Arequipa</option>
+                  <option value="Ayacucho">Ayacucho</option>
+                  <option value="Cajamarca">Cajamarca</option>
+                  <option value="Callao">Callao</option>
+                  <option value="Cusco">Cusco</option>
+                  <option value="Huancavelica">Huancavelica </option>
+                  <option value="Huanuco">Huanuco</option>
+                  <option value="Ica">Ica</option>
+                  <option value="Junin">Junín</option>
+                  <option value="La Libertad">La Libertad</option>
+                  <option value="Lambayeque">Lambayeque</option>
+                  <option value="Lima">Lima</option>
+                  <option value="Loreto">Loreto</option>
+                  <option value="Madre de Dios">Madre de Dios</option>
+                  <option value="Moquegua">Moquegua</option>
+                  <option value="Pasco">Pasco </option>
+                  <option value="Piura">Piura</option>
+                  <option value="Puno">Puno</option>
+                  <option value="San Martín">San Martín</option>
+                  <option value="Tacna">Tacna</option>
+                  <option value="Tumbes">Tumbes</option>
+                  <option value="Ucayali">Ucayali</option>
+                </Form.Select>
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm="3">
                 Precio desde:
               </Form.Label>
-              <Col sm="10">
+              <Col sm="9">
                 <Form.Control
                   placeholder="Ejm: S/ 700"
                   type="text"
-                  name="tags"
+                  name="rate"
                   onChange={handleInputChange}
-                  value={formValues.tags}
+                  value={formValues.rate}
                   data-test-id="tags-post-form"
                 />
               </Col>
             </Form.Group>
-
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="2">
-                Ubicación:
+              <Form.Label column sm="3">
+                Página Web:
               </Form.Label>
-              <Col sm="10">
-                <Form.Select
-                  name="sex"
+              <Col sm="9">
+                <Form.Control
+                  placeholder=""
+                  type="text"
+                  name="page"
                   onChange={handleInputChange}
-                  value={formValues.sex}
-                  data-test-id="sex-select-form"
-                >
-                  <option value="">Selecciona tu Ubicación</option>
-                  <option value="amazonas">Amazonas</option>
-                  <option value="ancash">Ancash</option>
-                  <option value="apurimac">Apurimac</option>
-                  <option value="arequipa">Arequipa</option>
-                  <option value="ayacucho">Ayacucho</option>
-                  <option value="cajamarca">Cajamarca</option>
-                  <option value="callao">Callao</option>
-                  <option value="cusco">Cusco</option>
-                  <option value="huancavelica">Huancavelica </option>
-                  <option value="huanuco">Huanuco</option>
-                  <option value="ica">Ica</option>
-                  <option value="junin">Junín</option>
-                  <option value="lalibertad">La Libertad</option>
-                  <option value="lambayeque">Lambayeque</option>
-                  <option value="lima">Lima</option>
-                  <option value="loreto">Loreto</option>
-                  <option value="madrededios">Madre de Dios</option>
-                  <option value="moquegua">Moquegua</option>
-                  <option value="pasco">Pasco </option>
-                  <option value="piura">Piura</option>
-                  <option value="puno">Puno</option>
-                  <option value="sanmartin">San Martín</option>
-                  <option value="tacna">Tacna</option>
-                  <option value="tumbes">Tumbes</option>
-                  <option value="ucayali">Ucayali</option>
-                </Form.Select>
+                  value={formValues.page}
+                  data-test-id="name-post-form"
+                />
               </Col>
             </Form.Group>
-
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="2">
+              <Form.Label column sm="3">
+                Facebook:
+              </Form.Label>
+              <Col sm="9">
+                <Form.Control
+                  placeholder=""
+                  type="text"
+                  name="facebook"
+                  onChange={handleInputChange}
+                  value={formValues.facebook}
+                  data-test-id="name-post-form"
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm="3">
+                Instagram:
+              </Form.Label>
+              <Col sm="9">
+                <Form.Control
+                  placeholder=""
+                  type="text"
+                  name="instagram"
+                  onChange={handleInputChange}
+                  value={formValues.instagram}
+                  data-test-id="name-post-form"
+                />
+              </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm="3">
                 Descripción:
               </Form.Label>
-              <Col sm="10">
+              <Col sm="9">
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -256,10 +281,10 @@ export default function CreateCard({ posts, setDataPost }) {
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3">
-              <Form.Label column sm="2">
+              <Form.Label column sm="3">
                 Fotos:
               </Form.Label>
-              <Col sm="10">
+              <Col sm="9">
                 <Form.Group controlId="formFileMultiple" className="mb-3">
                   <input
                     type="file"
@@ -272,18 +297,25 @@ export default function CreateCard({ posts, setDataPost }) {
                 </Form.Group>
               </Col>
             </Form.Group>
-
-            <Button variant="secondary" type="submit" id="button-login-form">
-              Crear Anuncio
-            </Button>
+            <Form.Group as={Row} className="justify-content-center">
+              <Button
+                className="mt-5 w-50 "
+                variant="secondary"
+                type="submit"
+                id="button-login-form"
+              >
+                Crear Anuncio
+              </Button>
+            </Form.Group>
           </Form>
         </Col>
-        <Col lg={4} className="mt-5">
+        <Col lg={5} className="m-3">
           <figure>
             {!isUploaded ? (
               <>
                 <Image
-                  width={200}
+                  className="m-1"
+                  width={300}
                   draggable={"false"}
                   src={profileIcon}
                   alt="UploadImage"
@@ -294,7 +326,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 return (
                   <Image
                     key={photo.match(/([a-zA-Z0-9]+.jpg)/)[0]}
-                    width={200}
+                    width={300}
                     draggable={"false"}
                     src={photo}
                     alt="UploadImage"
