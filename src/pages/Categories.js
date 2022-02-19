@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Form, Row, Container, Accordion } from "react-bootstrap";
+import { Form, Row, Container } from "react-bootstrap";
 import CategoryCard from "../components/CategoryCard";
 
 export default function Categories({ posts, setPosts }) {
@@ -86,7 +86,7 @@ export default function Categories({ posts, setPosts }) {
               onChange={handleInputChange}
               value={queryParams.ubication}
             >
-              <option value="">Todos</option>
+              <option value="">Ubicación</option>
               <option value="Amazonas">Amazonas</option>
               <option value="Ancash">Ancash</option>
               <option value="Apurimac">Apurimac</option>
@@ -119,7 +119,7 @@ export default function Categories({ posts, setPosts }) {
               onChange={handleInputChange}
               value={queryParams.category}
             >
-              <option value="">Selecciona una opción</option>
+              <option value="">Categorías</option>
               <option value="Cattering">Cattering</option>
               <option value="Event Planner">Event Planner</option>
               <option value="Fotografia">Fotografia</option>

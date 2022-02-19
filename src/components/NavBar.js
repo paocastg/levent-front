@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Nav, Navbar, Button, Dropdown } from "react-bootstrap";
-import leventLogo from "../assets/logo.png";
+import leventLogo from "../assets/L'EVENT - PNG.png";
 import useAuth from "../auth/useAuth";
 import { BsPersonCircle } from "react-icons/bs";
 

@@ -5,11 +5,11 @@ import { Row } from "react-bootstrap";
 const banners = [
   {
     id: 0,
-    company: "Katrina Florist Shop",
+    company: "ChikyPau Eventos",
     photo:
-      "https://res.cloudinary.com/paocast/image/upload/v1645215074/wayki/vb5tv6t6xyxp7kv4whdn.png",
-    ubication: "Lima",
-    category: "Floreria",
+      "https://res.cloudinary.com/paocast/image/upload/v1645300724/wayki/chikypau_fghsga.jpg",
+    ubication: "La Libertad",
+    category: "Animación",
   },
   {
     id: 1,

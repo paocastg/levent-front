@@ -1,7 +1,7 @@
 import { Col, Image, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
-import BackgroundImage from "../assets/10.jpg";
+import logo from "../assets/L'EVENT - PNG.png";
+import BackgroundImage from "../assets/prueba2.webp";
 
 const style = {
   backgroundImage: `url(${BackgroundImage}), linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.8))`,
@@ -25,11 +25,9 @@ export default function Hero() {
     >
       <style scoped>{css}</style>
 
-      <Image style={{ minWidth: "200px" }} src={logo} alt="logo" />
+      <Image style={{ maxWidth: "500px" }} src={logo} alt="logo" />
 
-      <p className="h4 mt-2" style={{ color: "white" }}>
-        Encuentra todo lo que necesitas para tu evento
-      </p>
+      <p className="h4 mt-2">Encuentra todo lo que necesitas para tu evento</p>
       <Button
         className="mx-2 my-4"
         variant="secondary"

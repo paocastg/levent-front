@@ -34,17 +34,21 @@ export default function MyPosts() {
       <h2 className="pt-4">Mis Anuncios</h2>
       {postById.length ? (
         <Row className="align-items-center my-4 sm-8" lg={12} md={12} xs={12}>
-          {postById.map(({ id, title, createdAt: date, photos }) => {
-            return (
-              <MyPostsCard
-                key={id}
-                id={id}
-                title={title}
-                photos={photos}
-                date={date}
-              />
-            );
-          })}
+          {postById.map(
+            ({ id, company, ubication, category, rate, photos }) => {
+              return (
+                <MyPostsCard
+                  key={id}
+                  id={id}
+                  company={company}
+                  photos={photos}
+                  ubication={ubication}
+                  category={category}
+                  rate={rate}
+                />
+              );
+            }
+          )}
         </Row>
       ) : (
         <div>No se encontraron resultados</div>

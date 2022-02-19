@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import GalleryDetailCard from "../components/GalleryDetailCard";
 import HeadBoard from "../components/HeadBoard";
 import { useParams } from "react-router-dom";
