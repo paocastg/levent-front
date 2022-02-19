@@ -25,9 +25,11 @@ export default function Hero() {
     >
       <style scoped>{css}</style>
 
-      <Image style={{ minWidth: "200px" }} src={logo} alt="logo" fluid />
+      <Image style={{ minWidth: "200px" }} src={logo} alt="logo" />
 
-      <p className="h4">Encuentra todo lo que necesitas para tu evento</p>
+      <p className="h4 mt-2" style={{ color: "white" }}>
+        Encuentra todo lo que necesitas para tu evento
+      </p>
       <Button
         className="mx-2 my-4"
         variant="secondary"
