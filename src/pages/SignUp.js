@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setSession, setToken } from "../user/session";
-
 import axios from "axios";
 import { Container, Alert, Button, FloatingLabel, Form } from "react-bootstrap";
-
+import GoogleLogin from "react-google-login";
+import config from "../config";
 import useAuth from "../auth/useAuth";
 
 export default function SignUp() {
@@ -72,6 +72,41 @@ export default function SignUp() {
 
   const handleValidPassword = (e) => {
     setValidPassword(e.target.value);
+  };
+
+  const responseGoogle = (response) => {
+    const newObject = {
+      username: response.profileObj.name,
+      pwd: response.googleId,
+      email: response.profileObj.email,
+    };
+
+    axios
+      .post(
+        `${process.env.REACT_APP_BASE_API_URL}/api/v1/users/signup`,
+        newObject
+      )
+      .then(({ data }) => {
+        if (data.error) {
+          setMessage(data.message);
+          setAlert(data.error);
+        } else {
+          auth.login(data.id, data.username, data.email);
+          const user = {
+            id: `${data.id}`,
+            username: `${data.username}`,
+            email: `${data.email}`,
+          };
+          setToken(data.token);
+          setSession(JSON.stringify(user));
+          navigate("/profile");
+        }
+      });
+  };
+
+  const responseErrorGoogle = (response) => {
+    setAlert(true);
+    setMessage("La validación de Google no fue correcta.");
   };
 
   return (
@@ -150,6 +185,15 @@ export default function SignUp() {
             </Button>
           </Form.Group>
         </form>
+        <div className="justify-content-center text-center">
+          <GoogleLogin
+            clientId={config.GOOGLE_LOGIN}
+            buttonText="Registrate con Google"
+            onSuccess={responseGoogle}
+            onFailure={responseErrorGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
       </div>
     </Container>
   );

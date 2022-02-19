@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Button, FloatingLabel, Alert, Form } from "react-bootstrap";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function EmailCard({ data }) {
   const [message, setMessage] = useState("");
   const [alert, setAlert] = useState();
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
+
   const [formValues, setFormValues] = useState({
     name: "",
     mail: "",
@@ -17,6 +18,7 @@ export default function EmailCard({ data }) {
   const handleInputChange = ({ target }) => {
     setFormValues((state) => ({ ...state, [target.name]: target.value }));
   };
+
   const handleForm = (e) => {
     e.preventDefault();
 
@@ -40,9 +42,15 @@ export default function EmailCard({ data }) {
         } else {
           setMessage("se envio con éxito");
           setAlert("se envio con éxito");
-          setTimeout(() => {
-            navigate(`/categories`);
-          }, 1500);
+          setFormValues({
+            name: "",
+            mail: "",
+            subject: "",
+            body: "",
+          });
+          // setTimeout(() => {
+          //   navigate(`/categories`);
+          // }, 1500);
         }
       });
   };
@@ -75,9 +83,10 @@ export default function EmailCard({ data }) {
               className="my-3"
             >
               <Form.Control
-                type="name"
+                type="text"
                 name="name"
                 onChange={handleInputChange}
+                value={formValues.name}
                 data-test-id="newusername-login-form"
               />
             </FloatingLabel>
@@ -87,9 +96,10 @@ export default function EmailCard({ data }) {
               className="my-3"
             >
               <Form.Control
-                type="email"
+                type="text"
                 name="mail"
                 placeholder="name@example.com"
+                value={formValues.mail}
                 onChange={handleInputChange}
                 data-test-id="email-login-form"
               />
@@ -103,6 +113,7 @@ export default function EmailCard({ data }) {
                 type="text"
                 name="subject"
                 placeholder="Solicito cotización"
+                value={formValues.subject}
                 onChange={handleInputChange}
                 data-test-id="password-login-form"
               />
@@ -113,13 +124,14 @@ export default function EmailCard({ data }) {
                 rows={3}
                 type="text"
                 name="body"
+                value={formValues.body}
                 onChange={handleInputChange}
               />
             </FloatingLabel>
             <Button
               variant="secondary"
               type="submit"
-              className="my-4 v-100"
+              className="my-2 v-100"
               id="button-login-form"
             >
               Enviar Solicitud

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Alert,
@@ -10,9 +10,11 @@ import {
   Row,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import WaykiLogo from "../assets/logo.png";
+import Logo from "../assets/logo.png";
 import useAuth from "../auth/useAuth";
 import { setSession, setToken } from "../user/session";
+import GoogleLogin from "react-google-login";
+import config from "../config";
 
 export default function Login() {
   const usernameLocal = JSON.parse(localStorage.getItem("remember"));
@@ -65,6 +67,43 @@ export default function Login() {
       });
   };
 
+  const responseGoogle = (response) => {
+    const newUserLogin = {
+      username: response.profileObj.name,
+      pwd: response.googleId,
+    };
+
+    check === "on" &&
+      localStorage.setItem("remember", JSON.stringify(username));
+
+    axios
+      .post(
+        `${process.env.REACT_APP_BASE_API_URL}/api/v1/users/login`,
+        newUserLogin
+      )
+      .then(({ data }) => {
+        if (data.error) {
+          setData(data);
+          setAlert(data.error);
+        } else {
+          auth.login(data.id, data.username, data.email);
+          const user = {
+            id: data.id,
+            username: data.username,
+            email: data.email,
+          };
+          setToken(data.token);
+          setSession(JSON.stringify(user));
+          navigate("/");
+        }
+      });
+  };
+
+  const responseErrorGoogle = (response) => {
+    setAlert(true);
+    setData({ message: "La validación de Google no fue correcta." });
+  };
+
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
@@ -85,7 +124,7 @@ export default function Login() {
             <Col>
               <Form onSubmit={handleForm}>
                 <Form.Group>
-                  <img alt="logo" src={WaykiLogo} className="w-50" />
+                  <img alt="logo" src={Logo} className="w-50" />
                   <FloatingLabel
                     controlId="floatingInput"
                     label="Escribe tu usuario"
@@ -133,6 +172,15 @@ export default function Login() {
                   Iniciar sesión
                 </Button>
               </Form>
+              <div className="mb-5 ">
+                <GoogleLogin
+                  clientId={config.GOOGLE_LOGIN}
+                  buttonText="Inicia Sesión con Google"
+                  onSuccess={responseGoogle}
+                  onFailure={responseErrorGoogle}
+                  cookiePolicy={"single_host_origin"}
+                />
+              </div>
             </Col>
           </Row>
           <Form.Group

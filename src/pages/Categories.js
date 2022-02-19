@@ -52,7 +52,6 @@ export default function Categories({ posts, setPosts }) {
           const response = await axios.get(
             `${process.env.REACT_APP_BASE_API_URL}/api/v1/posts?${queryString}`
           );
-          setPosts(response.data.data);
           setFilteredPosts(response.data.data);
         } catch (error) {
           console.log(error);
@@ -87,7 +86,7 @@ export default function Categories({ posts, setPosts }) {
               onChange={handleInputChange}
               value={queryParams.ubication}
             >
-              <option value="">Ubicación</option>
+              <option value="">Todos</option>
               <option value="Amazonas">Amazonas</option>
               <option value="Ancash">Ancash</option>
               <option value="Apurimac">Apurimac</option>
@@ -114,20 +113,34 @@ export default function Categories({ posts, setPosts }) {
               <option value="Tumbes">Tumbes</option>
               <option value="Ucayali">Ucayali</option>
             </Form.Select>
-            <Accordion defaultActiveKey="0" className="mb-3">
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>Categorías</Accordion.Header>
-                <Accordion.Body>
-                  <option value="Cattering">Cattering</option>
-                </Accordion.Body>
-                <Accordion.Body>
-                  <option value="Event Planner">Event Planner</option>
-                </Accordion.Body>
-                <Accordion.Body>
-                  <option value="Fotografia">Fotografia</option>
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
+            <Form.Select
+              className="mb-3"
+              name="category"
+              onChange={handleInputChange}
+              value={queryParams.category}
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="Cattering">Cattering</option>
+              <option value="Event Planner">Event Planner</option>
+              <option value="Fotografia">Fotografia</option>
+              <option value="Video">Video</option>
+              <option value="Música Animación">Música Animación</option>
+              <option value="Decoración de eventos">
+                Decoración de eventos
+              </option>
+              <option value="Florerias">Florerias</option>
+              <option value="Vestidos">Vestidos</option>
+              <option value="Ternos">Ternos</option>
+              <option value="Recepciones">Recepciones</option>
+              <option value="Accesorios">Accesorios</option>
+              <option value="Recuerdos">Recuerdos</option>
+              <option value="Movilidad">Movilidad</option>
+              <option value="Invitaciones">Invitaciones</option>
+              <option value="Mobiliario">Mobiliario</option>
+              <option value="Open Bar">Open Bar</option>
+              <option value="Food truck">Food truck</option>
+              <option value="Pasteleria">Pasteleria</option>
+            </Form.Select>
           </div>
           <div className="col-md-9">
             {filteredPosts.length ? (
