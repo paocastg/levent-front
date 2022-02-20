@@ -27,7 +27,7 @@ export default function MyPosts() {
       .then((response) => {
         setPostById(response.data);
       });
-  }, []);
+  }, [auth, token]);
 
   return (
     <Container className="my-5">
