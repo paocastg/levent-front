@@ -87,7 +87,6 @@ export default function EmailCard({ data }) {
                 name="name"
                 onChange={handleInputChange}
                 value={formValues.name}
-                data-test-id="newusername-login-form"
               />
             </FloatingLabel>
             <FloatingLabel
@@ -100,7 +99,6 @@ export default function EmailCard({ data }) {
                 name="mail"
                 value={formValues.mail}
                 onChange={handleInputChange}
-                data-test-id="email-login-form"
               />
             </FloatingLabel>
             <FloatingLabel
@@ -113,7 +111,6 @@ export default function EmailCard({ data }) {
                 name="subject"
                 value={formValues.subject}
                 onChange={handleInputChange}
-                data-test-id="password-login-form"
               />
             </FloatingLabel>
             <FloatingLabel

@@ -31,7 +31,6 @@ body, html, .App, #root, .auth-wrapper
   justify-content: center;
   flex-direction: column;
   text-align: left;
-margin: 5px;
 }
 
 .auth-inner 

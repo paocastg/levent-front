@@ -30,7 +30,12 @@ export default function MyPosts() {
   }, [auth, token]);
 
   return (
-    <Container className="my-5">
+    <Container
+      className="my-5"
+      style={{
+        minHeight: "500px",
+      }}
+    >
       <h2 className="pt-4">Mis Anuncios</h2>
       {postById.length ? (
         <Row className="align-items-center my-4 sm-8" lg={12} md={12} xs={12}>

@@ -139,11 +139,11 @@ export default function CreateCard({ posts, setDataPost }) {
             </Col>
           </Form.Group>
           <Form.Group className="mb-3">
-            <figure>
+            <figure className="mb-3">
               {!isUploaded ? (
                 <>
                   <Image
-                    className="mx-1"
+                    className="mx-1 mb-3"
                     width={300}
                     draggable={"false"}
                     src={profileIcon}
@@ -154,7 +154,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 formValues.photos.map((photo) => {
                   return (
                     <Image
-                      className="mx-2"
+                      className="mx-2 mb-3"
                       key={photo.match(/([a-zA-Z0-9]+.jpg)/)[0]}
                       width={300}
                       draggable={"false"}
