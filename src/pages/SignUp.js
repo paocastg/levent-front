@@ -6,6 +6,7 @@ import { Container, Alert, Button, FloatingLabel, Form } from "react-bootstrap";
 import GoogleLogin from "react-google-login";
 import config from "../config";
 import useAuth from "../auth/useAuth";
+import Logo from "../assets/logo.png";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -124,13 +125,20 @@ export default function SignUp() {
       )}
 
       <div className="auth-inner">
-        <form onSubmit={handleForm} noValidate autoComplete="off">
+        <Form
+          onSubmit={handleForm}
+          className="justify-content-center text-center"
+          noValidate
+          autoComplete="off"
+        >
+          <img alt="logo" src={Logo} className="w-25 mb-3" />
           <h3>Registrate</h3>
 
           <Form.Group>
             <FloatingLabel
               controlId="floatingInput1"
-              label="Ingresa tu nuevo nombre de usuario"
+              label="Ingresa tu username"
+              className="my-3"
             >
               <Form.Control
                 type="name"
@@ -141,7 +149,7 @@ export default function SignUp() {
             </FloatingLabel>
             <FloatingLabel
               controlId="floatingInput2"
-              label="Ingresa tu correo electronico"
+              label="Ingresa tu correo"
               className="my-3"
             >
               <Form.Control
@@ -165,7 +173,8 @@ export default function SignUp() {
             </FloatingLabel>
             <FloatingLabel
               controlId="floatingPassword2"
-              label="Ingresa tu contraseña nuevamente "
+              label="Repite tu contraseña "
+              className="my-2"
             >
               <Form.Control
                 type="password"
@@ -177,14 +186,13 @@ export default function SignUp() {
             <Button
               variant="secondary"
               type="submit"
-              className="btn btn-secondary w-100 my-4"
-              size="lg"
+              className="btn btn-secondary w-75 my-3"
               id="button-login-form"
             >
               Regístrate
             </Button>
           </Form.Group>
-        </form>
+        </Form>
         <div className="justify-content-center text-center">
           <GoogleLogin
             clientId={config.GOOGLE_LOGIN}

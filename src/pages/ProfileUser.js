@@ -96,7 +96,7 @@ export default function ProfileUser() {
               </Alert>
             )}
             <span className="text-center my-2">
-              <h2>Hello {auth.userLogin.username}</h2>
+              <h2>{auth.userLogin.username}</h2>
             </span>
 
             <br />

@@ -7,7 +7,6 @@ import {
   Container,
   Col,
   Form,
-  Row,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
@@ -105,97 +104,93 @@ export default function Login() {
   };
 
   return (
-    <div className="auth-wrapper">
+    <Container className="auth-wrapper">
+      {alert && (
+        <Alert
+          variant="danger"
+          onClose={() => {
+            setAlert(false);
+          }}
+          dismissible
+        >
+          <p>{data.message}</p>
+        </Alert>
+      )}
       <div className="auth-inner">
-        <Container>
-          {alert && (
-            <Alert
-              variant="danger"
-              onClose={() => {
-                setAlert(false);
-              }}
-              dismissible
+        {/* <p> {data.error} </p> */}
+
+        <Form
+          onSubmit={handleForm}
+          className="justify-content-center text-center"
+        >
+          <img alt="logo" src={Logo} className="w-50" />
+          <Form.Group>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Escribe tu usuario"
+              className="my-3"
             >
-              <p>{data.message}</p>
-            </Alert>
-          )}
-          <p> {data.error} </p>
-          <Row className="justify-content-center text-center">
-            <Col>
-              <Form onSubmit={handleForm}>
-                <Form.Group>
-                  <img alt="logo" src={Logo} className="w-50" />
-                  <FloatingLabel
-                    controlId="floatingInput"
-                    label="Escribe tu usuario"
-                    className="my-3"
-                  >
-                    <Form.Control
-                      type="name"
-                      placeholder="Username"
-                      onChange={(e) => setUsername(e.target.value)}
-                      value={username}
-                      data-test-id="username-login-form"
-                    />
-                  </FloatingLabel>
-                </Form.Group>
-                <Form.Group>
-                  <FloatingLabel
-                    controlId="floatingPassword"
-                    label="Escribe tu contraseña"
-                  >
-                    <Form.Control
-                      type="password"
-                      placeholder="Password"
-                      onChange={(e) => setPassword(e.target.value)}
-                      data-test-id="password-login-form"
-                    />
-                  </FloatingLabel>
-                </Form.Group>
-                <div className="my-3">
-                  <Col
-                    className="text-decoration-none text-secondary"
-                    as={Link}
-                    to="/signup"
-                  >
-                    Regístrate
-                  </Col>
-                  <br />
-                </div>
-                <Button
-                  variant="secondary"
-                  type="submit"
-                  className="my-4"
-                  size="lg"
-                  id="button-login-form"
-                >
-                  Iniciar sesión
-                </Button>
-              </Form>
-              <div className="mb-5 ">
-                <GoogleLogin
-                  clientId={config.GOOGLE_LOGIN}
-                  buttonText="Inicia Sesión con Google"
-                  onSuccess={responseGoogle}
-                  onFailure={responseErrorGoogle}
-                  cookiePolicy={"single_host_origin"}
-                />
-              </div>
-            </Col>
-          </Row>
-          <Form.Group
-            className="mb-3 d-flex justify-content-center"
-            id="formGridCheckbox"
-          >
-            <Form.Check
-              type="checkbox"
-              label="Recuerdame"
-              onChange={handleCheckbox}
-              check={check}
-            />
+              <Form.Control
+                type="name"
+                placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+              />
+            </FloatingLabel>
           </Form.Group>
-        </Container>
+          <Form.Group>
+            <FloatingLabel
+              controlId="floatingPassword"
+              label="Escribe tu contraseña"
+            >
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FloatingLabel>
+          </Form.Group>
+          <div className="my-3">
+            <Col
+              className="text-decoration-none text-secondary"
+              as={Link}
+              to="/signup"
+            >
+              Regístrate
+            </Col>
+            <br />
+          </div>
+          <Button
+            variant="secondary"
+            type="submit"
+            className="my-4"
+            size="lg"
+            id="button-login-form"
+          >
+            Iniciar sesión
+          </Button>
+        </Form>
+        <div className="mb-3 d-flex justify-content-center">
+          <GoogleLogin
+            clientId={config.GOOGLE_LOGIN}
+            buttonText="Inicia Sesión con Google"
+            onSuccess={responseGoogle}
+            onFailure={responseErrorGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
+        <Form.Group
+          className="mb-3 d-flex justify-content-center"
+          id="formGridCheckbox"
+        >
+          <Form.Check
+            type="checkbox"
+            label="Recuerdame"
+            onChange={handleCheckbox}
+            check={check}
+          />
+        </Form.Group>
       </div>
-    </div>
+    </Container>
   );
 }

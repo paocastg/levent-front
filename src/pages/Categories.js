@@ -62,7 +62,13 @@ export default function Categories({ posts, setPosts }) {
   }, [queryParams]);
 
   return (
-    <Container className="text-center" fluid>
+    <Container
+      className="text-center"
+      fluid
+      style={{
+        minHeight: "500px",
+      }}
+    >
       <Row sm={2} className="row d-flex justify-content-center py-4">
         <h2 className="p-2">
           Encuentra los mejores profesionales para tu evento

@@ -41,7 +41,7 @@ export default function EmailCard({ data }) {
           setAlert(data.error);
         } else {
           setMessage("se envio con éxito");
-          setAlert("se envio con éxito");
+          setAlert(true);
           setFormValues({
             name: "",
             mail: "",
@@ -56,18 +56,18 @@ export default function EmailCard({ data }) {
   };
   return (
     <div className="auth-wrapper">
-      {alert && (
-        <Alert
-          variant="danger"
-          onClose={() => {
-            setAlert(false);
-          }}
-          dismissible
-        >
-          <p>{message}</p>
-        </Alert>
-      )}
       <div className="auth-inner">
+        {alert && (
+          <Alert
+            variant="success"
+            onClose={() => {
+              setAlert(false);
+            }}
+            dismissible
+          >
+            <p>{message}</p>
+          </Alert>
+        )}
         <form
           onSubmit={handleForm}
           noValidate
@@ -98,7 +98,6 @@ export default function EmailCard({ data }) {
               <Form.Control
                 type="text"
                 name="mail"
-                placeholder="name@example.com"
                 value={formValues.mail}
                 onChange={handleInputChange}
                 data-test-id="email-login-form"
@@ -112,16 +111,19 @@ export default function EmailCard({ data }) {
               <Form.Control
                 type="text"
                 name="subject"
-                placeholder="Solicito cotización"
                 value={formValues.subject}
                 onChange={handleInputChange}
                 data-test-id="password-login-form"
               />
             </FloatingLabel>
-            <FloatingLabel controlId="floating2" label="Mensaje ">
+            <FloatingLabel
+              controlId="floating2"
+              label="Mensaje "
+              className="my-3"
+            >
               <Form.Control
                 as="textarea"
-                rows={3}
+                rows={5}
                 type="text"
                 name="body"
                 value={formValues.body}
