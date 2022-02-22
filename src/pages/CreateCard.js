@@ -178,7 +178,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 name="company"
                 onChange={handleInputChange}
                 value={formValues.company}
-                data-test-id="title-post-form"
+                data-test-id="company-post-form"
               />
             </Col>
           </Form.Group>
@@ -192,7 +192,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 name="category"
                 onChange={handleInputChange}
                 value={formValues.category}
-                data-test-id="size-select-form"
+                data-test-id="category-select-form"
               >
                 <option value="">Selecciona una opción</option>
                 <option value="Cattering">Cattering</option>
@@ -228,7 +228,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 name="ubication"
                 onChange={handleInputChange}
                 value={formValues.ubication}
-                data-test-id="sex-select-form"
+                data-test-id="ubication-select-form"
               >
                 <option value="">Ubicación</option>
                 <option value="Amazonas">Amazonas</option>
@@ -270,7 +270,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 name="rate"
                 onChange={handleInputChange}
                 value={formValues.rate}
-                data-test-id="tags-post-form"
+                data-test-id="rate-post-form"
               />
             </Col>
           </Form.Group>
@@ -285,7 +285,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 name="page"
                 onChange={handleInputChange}
                 value={formValues.page}
-                data-test-id="name-post-form"
+                data-test-id="page-post-form"
               />
             </Col>
           </Form.Group>
@@ -300,7 +300,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 name="facebook"
                 onChange={handleInputChange}
                 value={formValues.facebook}
-                data-test-id="name-post-form"
+                data-test-id="facebook-post-form"
               />
             </Col>
           </Form.Group>
@@ -315,7 +315,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 name="instagram"
                 onChange={handleInputChange}
                 value={formValues.instagram}
-                data-test-id="name-post-form"
+                data-test-id="instagram-post-form"
               />
             </Col>
           </Form.Group>

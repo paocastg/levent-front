@@ -112,19 +112,18 @@ export default function SignUp() {
 
   return (
     <Container className="auth-wrapper">
-      {alert && (
-        <Alert
-          variant="danger"
-          onClose={() => {
-            setAlert(false);
-          }}
-          dismissible
-        >
-          <p>{message}</p>
-        </Alert>
-      )}
-
       <div className="auth-inner">
+        {alert && (
+          <Alert
+            variant="danger"
+            onClose={() => {
+              setAlert(false);
+            }}
+            dismissible
+          >
+            <p>{message}</p>
+          </Alert>
+        )}
         <Form
           onSubmit={handleForm}
           className="justify-content-center text-center"
