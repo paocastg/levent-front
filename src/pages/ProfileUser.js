@@ -196,7 +196,7 @@ export default function ProfileUser() {
                       onChange={handleInputChange}
                       type="text"
                       name="bio"
-                      data-test-id="bio-profile-form"
+                      data-test-id="descripCompany-profile-form"
                     />
                   </Col>
                 </Form.Group>

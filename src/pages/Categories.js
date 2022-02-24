@@ -131,9 +131,7 @@ export default function Categories({ posts, setPosts }) {
               <option value="Fotografia">Fotografia</option>
               <option value="Video">Video</option>
               <option value="Música Animación">Música Animación</option>
-              <option value="Decoración de eventos">
-                Decoración de eventos
-              </option>
+              <option value="Decoración">Decoración</option>
               <option value="Florerias">Florerias</option>
               <option value="Vestidos">Vestidos</option>
               <option value="Ternos">Ternos</option>

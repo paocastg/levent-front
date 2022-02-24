@@ -105,20 +105,19 @@ export default function Login() {
 
   return (
     <Container className="auth-wrapper">
-      {alert && (
-        <Alert
-          variant="danger"
-          onClose={() => {
-            setAlert(false);
-          }}
-          dismissible
-        >
-          <p>{data.message}</p>
-        </Alert>
-      )}
       <div className="auth-inner">
         {/* <p> {data.error} </p> */}
-
+        {alert && (
+          <Alert
+            variant="danger"
+            onClose={() => {
+              setAlert(false);
+            }}
+            dismissible
+          >
+            <p>{data.message}</p>
+          </Alert>
+        )}
         <Form
           onSubmit={handleForm}
           className="justify-content-center text-center"
@@ -135,6 +134,7 @@ export default function Login() {
                 placeholder="Username"
                 onChange={(e) => setUsername(e.target.value)}
                 value={username}
+                data-test-id="username-login-form"
               />
             </FloatingLabel>
           </Form.Group>
@@ -147,6 +147,7 @@ export default function Login() {
                 type="password"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
+                data-test-id="password-login-form"
               />
             </FloatingLabel>
           </Form.Group>

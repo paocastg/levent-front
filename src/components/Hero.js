@@ -25,7 +25,7 @@ export default function Hero() {
     >
       <style scoped>{css}</style>
 
-      <Image style={{ maxWidth: "500px" }} src={logo} alt="logo" />
+      <Image style={{ maxWidth: "400px" }} src={logo} alt="logo" />
 
       <p className="h4 mt-2">Encuentra todo lo que necesitas para tu evento</p>
       <Button

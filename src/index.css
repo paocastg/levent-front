@@ -14,6 +14,7 @@ body
 h1,h2,h3,h4,h5,h6,label,span 
  { font-weight: 500;
   font-family: 'Fira Sans', sans-serif;
+  color: #495371;
 }
 
 body, html, .App, #root, .auth-wrapper 
@@ -58,5 +59,18 @@ body, html, .App, #root, .auth-wrapper
 .custom-control-label 
  { font-weight: 400;
 }
+.btncat{
+  display: inline-flex;
+  flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    transition-duration: 0.4s;
+    width: 150px;
+}
 
-
+.btncat:hover {
+  background-color: #eeca94; /* Green */
+  color: white;
+}

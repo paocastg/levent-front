@@ -1,8 +1,9 @@
 import React from "react";
-import BannersGallery from "../components/BannersGallery";
 import Hero from "../components/Hero";
 import { Row, Container } from "react-bootstrap";
 import About from "../components/About";
+import CarouselHome from "../components/CarouselHome";
+import ButtonsFilters from "../components/ButtonsFilters";
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
       <Row>
         <Hero />
       </Row>
-      <BannersGallery />
+      <ButtonsFilters />
+      <CarouselHome />
       <About />
     </Container>
   );

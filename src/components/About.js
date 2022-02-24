@@ -9,7 +9,7 @@ export default function About() {
         <Row xs={10} sm={8}>
           <Row className="fs-5">
             <Col>
-              Somos un portal de eventos que te ayudan a organizar tu evento,
+              Somos un portal que te ayuda a organizar tu evento,
               <br /> un día único en la vida para disfrutar con la familia y los
               amigos. <br /> Todo esto lo hacemos con la colaboración de miles
               de
