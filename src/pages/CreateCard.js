@@ -28,7 +28,7 @@ export default function CreateCard({ posts, setDataPost }) {
     description: "",
     facebook: "",
     instagram: "",
-    page: "",
+
     rate: "",
     photos: [],
   });
@@ -67,7 +67,6 @@ export default function CreateCard({ posts, setDataPost }) {
       links: {
         facebook: formValues.facebook,
         instagram: formValues.instagram,
-        page: formValues.page,
       },
       company: formValues.company,
       category: formValues.category,
@@ -200,9 +199,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 <option value="Fotografia">Fotografia</option>
                 <option value="Video">Video</option>
                 <option value="Música Animación">Música Animación</option>
-                <option value="Decoración de eventos">
-                  Decoración de eventos
-                </option>
+                <option value="Decoración">Decoración</option>
                 <option value="Florerias">Florerias</option>
                 <option value="Vestidos">Vestidos</option>
                 <option value="Ternos">Ternos</option>
@@ -274,21 +271,7 @@ export default function CreateCard({ posts, setDataPost }) {
               />
             </Col>
           </Form.Group>
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="3">
-              Página Web:
-            </Form.Label>
-            <Col sm="9">
-              <Form.Control
-                placeholder=""
-                type="text"
-                name="page"
-                onChange={handleInputChange}
-                value={formValues.page}
-                data-test-id="page-post-form"
-              />
-            </Col>
-          </Form.Group>
+
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="3">
               Facebook:

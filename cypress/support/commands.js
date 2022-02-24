@@ -57,7 +57,7 @@ Cypress.Commands.add("profile_edit", ({ name, telephone, descripCompany }) => {
 
 Cypress.Commands.add(
   "create_post",
-  ({ company, rate, page, facebook, instagram, description }) => {
+  ({ company, rate, facebook, instagram, description }) => {
     cy.get('[data-test-id="photos-post-form"]').attachFile(fixtureFile);
     cy.pause();
 
@@ -76,10 +76,6 @@ Cypress.Commands.add(
     cy.get('[data-test-id="rate-post-form"]')
       .type(rate)
       .should("have.value", rate);
-
-    cy.get('[data-test-id="page-post-form"]')
-      .type(page)
-      .should("have.value", page);
 
     cy.get('[data-test-id="facebook-post-form"]')
       .type(facebook)

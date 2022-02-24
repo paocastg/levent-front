@@ -39,13 +39,11 @@ export default function CategoryCard({
         <Card.Body>
           <Card.Title>{company}</Card.Title>
           <Card.Text>
-            <p>{category}</p>
-            <p>
-              <AiOutlineEnvironment /> {ubication}
-            </p>
-            <p>
-              <strong>Desde: </strong>S/ {rate}
-            </p>
+            {category}
+            <br />
+            <AiOutlineEnvironment /> {ubication}
+            <br />
+            <strong>Desde: </strong>S/ {rate}
           </Card.Text>
         </Card.Body>
         <Card.Footer className="text-muted">

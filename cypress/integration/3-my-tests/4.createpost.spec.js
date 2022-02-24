@@ -16,7 +16,6 @@ describe("Test Create Post", () => {
     cy.create_post({
       company: "Fernanda Medina",
       rate: "1200",
-      page: "https://www.facebook.com/FernandaMedinaWP",
       facebook: "https://www.facebook.com/FernandaMedinaWP",
       instagram: "https://www.instagram.com/tuboda.piura/",
       description:

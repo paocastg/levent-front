@@ -23,7 +23,7 @@ export default function HeadBoard({ data }) {
   const url = `https://api.whatsapp.com/send?phone=${data.user?.number}&text=Hola,%20quisiera%20cotizar%20mi%20evento`;
   const urlFb = data.links.facebook;
   const urlIg = data.links.instagram;
-  const urlPw = data.links.page;
+
   const handleDeletePost = () => {
     axios
       .delete(`${config.BASE_API_URL}/api/v1/posts/${id}`, {
@@ -117,10 +117,6 @@ export default function HeadBoard({ data }) {
           {"  "}
           <Button variant="light" href={urlIg} target="_blank">
             <AiOutlineInstagram />
-          </Button>
-          {"  "}
-          <Button variant="light" href={urlPw} target="_blank">
-            Sitio Web
           </Button>
         </p>
       </Col>

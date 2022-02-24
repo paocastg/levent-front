@@ -53,6 +53,15 @@ export default function MyPostsCard({
           >
             Ver
           </Button>
+          <Button
+            className="mt-2"
+            as={Link}
+            to={`/post/${id}`}
+            variant="secondary"
+            id="see-post"
+          >
+            Publicitar
+          </Button>
         </Card.Body>
       </div>
     </Col>
