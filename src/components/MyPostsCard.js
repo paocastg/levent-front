@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AiOutlineEnvironment } from "react-icons/ai";
+import Payment from "./Payment";
 
 export default function MyPostsCard({
   id,
@@ -37,13 +38,11 @@ export default function MyPostsCard({
         <Card.Body className="d-flex flex-column justify-content-center">
           <Card.Title>{company}</Card.Title>{" "}
           <Card.Text>
-            <p>{category}</p>
-            <p>
-              <AiOutlineEnvironment /> {ubication}
-            </p>
-            <p>
-              <strong>Desde: </strong>S/ {rate}
-            </p>
+            {category}
+            <br />
+            <AiOutlineEnvironment /> {ubication}
+            <br />
+            <strong>Desde: </strong>S/ {rate}
           </Card.Text>
           <Button
             as={Link}
@@ -53,15 +52,7 @@ export default function MyPostsCard({
           >
             Ver
           </Button>
-          <Button
-            className="mt-2"
-            as={Link}
-            to={`/post/${id}`}
-            variant="secondary"
-            id="see-post"
-          >
-            Publicitar
-          </Button>
+          <Payment className="d-flex flex-column" idPost={id} />
         </Card.Body>
       </div>
     </Col>

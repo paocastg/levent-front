@@ -198,7 +198,7 @@ export default function CreateCard({ posts, setDataPost }) {
                 <option value="Event Planner">Event Planner</option>
                 <option value="Fotografia">Fotografia</option>
                 <option value="Video">Video</option>
-                <option value="Música Animación">Música Animación</option>
+                <option value=" Música"> Música</option>
                 <option value="Decoración">Decoración</option>
                 <option value="Florerias">Florerias</option>
                 <option value="Vestidos">Vestidos</option>

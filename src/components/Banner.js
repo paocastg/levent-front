@@ -7,12 +7,16 @@ export default function Banner({
   company,
   category,
   ubication,
-  photo,
+  photos,
   rate,
 }) {
   return (
     <Card key={id} className="p-1 me-1" style={{ padding: 8 }}>
-      <Card.Img variant="top" src={photo} style={{ width: "100%" }} />
+      <Card.Img
+        variant="top"
+        src={photos}
+        style={{ width: "100%", height: "200px" }}
+      />
       <Card.Body>
         <Card.Title> {company}</Card.Title>
         <Card.Text>

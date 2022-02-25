@@ -15,6 +15,7 @@ import ProfileUser from "./pages/ProfileUser";
 import MyPosts from "./pages/MyPosts";
 import CreateCard from "./pages/CreateCard";
 import DetailCard from "./pages/DetailCard";
+import Payment from "./components/Payment";
 
 function App() {
   const [dataCategory, setDataCategory] = useState([]);
@@ -35,7 +36,7 @@ function App() {
       <AuthProvider>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home posts={dataCategory} />} />
           <Route
             path="/categories"
             element={
@@ -90,6 +91,16 @@ function App() {
             path="/post/:id"
             element={
               dataCategory.length && <DetailCard dataPost={dataCategory} />
+            }
+          />
+          <Route
+            path="/payment/:id"
+            element={
+              dataCategory.length && (
+                <PrivateRoute>
+                  <Payment dataPostId={dataCategory} />
+                </PrivateRoute>
+              )
             }
           />
         </Routes>

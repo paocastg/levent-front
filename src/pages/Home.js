@@ -5,13 +5,13 @@ import About from "../components/About";
 import CarouselHome from "../components/CarouselHome";
 import ButtonsFilters from "../components/ButtonsFilters";
 
-export default function Home() {
+export default function Home({ posts, setPosts }) {
   return (
     <Container className="text-center" fluid>
       <Row>
         <Hero />
       </Row>
-      <ButtonsFilters />
+      <ButtonsFilters posts={posts} setPosts={setPosts} />
       <CarouselHome />
       <About />
     </Container>
