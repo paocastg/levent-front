@@ -1,5 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { AiOutlineEnvironment } from "react-icons/ai";
 
 export default function Banner({
@@ -23,7 +24,9 @@ export default function Banner({
           {category} <br />
           <strong>Desde: </strong>S/ {rate}
         </Card.Text>
-        <button className="btn btn-secondary">Contactar</button>
+        <Button as={Link} to={`/post/${id}`} variant="secondary">
+          Contactar
+        </Button>
       </Card.Body>
       <Card.Footer className="text-muted">
         <AiOutlineEnvironment />

@@ -12,7 +12,7 @@ export default function ButtonsFilters({ posts }) {
   return (
     <div>
       <div className="mb-3 mt-5">
-        <h3>Encuentra los mejores proveedores por categoria</h3>
+        <h3>Planifica tu evento ideal</h3>
       </div>
 
       <Button

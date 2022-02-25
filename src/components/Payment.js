@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 import axios from "axios";
 import config from "../config";
 import { getToken } from "../user/session";
 
-function Payment({ idPost }) {
+function Payment({ idPost, published }) {
   const action = `${process.env.REACT_APP_BASE_API_URL}/api/v1/payment/create-checkout-session/${idPost}`;
   const token = getToken();
 
@@ -42,7 +42,12 @@ function Payment({ idPost }) {
   return (
     <Container>
       <Form action={action} method="POST">
-        <Button variant="secondary" className="mt-2" type="submit">
+        <Button
+          variant="secondary"
+          className="mt-2"
+          type="submit"
+          disabled={published === 1}
+        >
           Publicitar
         </Button>
       </Form>

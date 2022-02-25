@@ -11,6 +11,7 @@ export default function MyPostsCard({
   ubication,
   category,
   rate,
+  published,
 }) {
   return (
     <Col key={id} className="py-2 text-center" lg={3} md={6} xs={12}>
@@ -52,7 +53,11 @@ export default function MyPostsCard({
           >
             Ver
           </Button>
-          <Payment className="d-flex flex-column" idPost={id} />
+          <Payment
+            className="d-flex flex-column"
+            idPost={id}
+            published={published}
+          />
         </Card.Body>
       </div>
     </Col>

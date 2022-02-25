@@ -40,7 +40,7 @@ export default function MyPosts() {
       {postById.length ? (
         <Row className="align-items-center my-4 sm-8" lg={12} md={12} xs={12}>
           {postById.map(
-            ({ id, company, ubication, category, rate, photos }) => {
+            ({ id, company, ubication, category, rate, photos, published }) => {
               return (
                 <MyPostsCard
                   key={id}
@@ -50,6 +50,7 @@ export default function MyPosts() {
                   ubication={ubication}
                   category={category}
                   rate={rate}
+                  published={published}
                 />
               );
             }
