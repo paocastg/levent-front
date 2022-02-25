@@ -131,7 +131,9 @@ export default function SignUp() {
           autoComplete="off"
         >
           <img alt="logo" src={Logo} className="w-25 mb-3" />
-          <h3>Registrate</h3>
+          <h4>
+            Registrate gratis y <br /> ¡haz crecer tu negocio!
+          </h4>
 
           <Form.Group>
             <FloatingLabel
