@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Form, Row, Container } from "react-bootstrap";
 import CategoryCard from "../components/CategoryCard";
+import { useSearchParams } from "react-router-dom";
 
 export default function Categories({ posts, setPosts }) {
   const [queryParams, setQueryParams] = useState({
@@ -13,6 +13,7 @@ export default function Categories({ posts, setPosts }) {
   });
   const [shallowSearch, setShallowSearch] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
+  let [searchParams, setSearchParams] = useSearchParams();
 
   const handleShallowSearch = (e) => {
     e.preventDefault();
@@ -34,6 +35,12 @@ export default function Categories({ posts, setPosts }) {
   };
 
   useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("category")) {
+      queryParams.category = query.get("category");
+    }
+
     let params = Object.entries(queryParams).filter(([k, v]) => v !== "");
 
     const fetchData = async () => {
@@ -130,7 +137,7 @@ export default function Categories({ posts, setPosts }) {
               <option value="Event Planner">Event Planner</option>
               <option value="Fotografia">Fotografia</option>
               <option value="Video">Video</option>
-              <option value="Música Animación">Música Animación</option>
+              <option value="Música">Música </option>
               <option value="Decoración">Decoración</option>
               <option value="Florerias">Florerias</option>
               <option value="Vestidos">Vestidos</option>

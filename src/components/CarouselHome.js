@@ -1,49 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Banner from "./Banner";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import axios from "axios";
 
-const banners = [
-  {
-    id: 0,
-    company: "ChikyPau Eventos",
-    photo:
-      "https://res.cloudinary.com/paocast/image/upload/v1645300724/wayki/chikypau_fghsga.jpg",
-    ubication: "La Libertad",
-    category: "Animación",
-    rate: "500",
-  },
-  {
-    id: 1,
-    company: "The Perfect Match",
-    photo:
-      "https://res.cloudinary.com/paocast/image/upload/v1645215074/wayki/fh9j4zqrousekpjchqhf.png",
-    ubication: "Tumbes",
-    category: "Event Planner",
-    rate: "1500",
-  },
-  {
-    id: 2,
-    company: "Michilot Perú",
-    photo:
-      "https://res.cloudinary.com/paocast/image/upload/v1645215075/wayki/hkwgkom1pleux4bfz2mq.jpg",
-    ubication: "La Libertad",
-    category: "Video",
-    rate: "1000",
-  },
-  {
-    id: 3,
-    company: "San Jonás Catering",
-    photo:
-      "https://res.cloudinary.com/paocast/image/upload/v1645215082/wayki/cywqfsy7xorcrnwf0zhx.png",
-    ubication: "Ancash",
-    category: "Catering",
-    rate: "700",
-  },
-];
+// const banners = [
+//   {
+//     id: 0,
+//     company: "ChikyPau Eventos",
+//     photo:
+//       "https://res.cloudinary.com/paocast/image/upload/v1645300724/wayki/chikypau_fghsga.jpg",
+//     ubication: "La Libertad",
+//     category: "Animación",
+//     rate: "500",
+//   },
+//   {
+//     id: 1,
+//     company: "The Perfect Match",
+//     photo:
+//       "https://res.cloudinary.com/paocast/image/upload/v1645215074/wayki/fh9j4zqrousekpjchqhf.png",
+//     ubication: "Tumbes",
+//     category: "Event Planner",
+//     rate: "1500",
+//   },
+//   {
+//     id: 2,
+//     company: "Michilot Perú",
+//     photo:
+//       "https://res.cloudinary.com/paocast/image/upload/v1645215075/wayki/hkwgkom1pleux4bfz2mq.jpg",
+//     ubication: "La Libertad",
+//     category: "Video",
+//     rate: "1000",
+//   },
+//   {
+//     id: 3,
+//     company: "San Jonás Catering",
+//     photo:
+//       "https://res.cloudinary.com/paocast/image/upload/v1645215082/wayki/cywqfsy7xorcrnwf0zhx.png",
+//     ubication: "Ancash",
+//     category: "Catering",
+//     rate: "700",
+//   },
+// ];
 
 export default function CarouselHome() {
+  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [queryParams] = useState({
+    published: 1,
+  });
+
+  useEffect(() => {
+    let params = Object.entries(queryParams).filter(([k, v]) => v !== "");
+
+    const fetchData = async () => {
+      if (params.length) {
+        const queryString = params
+          .map((arr) => `${arr[0]}=${arr[1]}`)
+          .reduce((k, v) => {
+            if (k !== "") {
+              let result = `${k}&${v}`;
+              return result;
+            } else {
+              return `${v}`;
+            }
+          }, "");
+        try {
+          const response = await axios.get(
+            `${process.env.REACT_APP_BASE_API_URL}/api/v1/posts?${queryString}`
+          );
+          setFilteredPosts(response.data.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    fetchData();
+  }, [queryParams]);
+
   return (
     <>
       <div className="mb-3 mt-5">
@@ -95,22 +129,24 @@ export default function CarouselHome() {
         }}
         showDots={false}
         sliderClass=""
-        slidesToSlide={2}
+        slidesToSlide={1}
         swipeable
       >
-        {banners.map(({ id, company, photo, ubication, category, rate }) => {
-          return (
-            <Banner
-              key={id}
-              id={id}
-              company={company}
-              photo={photo}
-              ubication={ubication}
-              category={category}
-              rate={rate}
-            />
-          );
-        })}
+        {filteredPosts.map(
+          ({ id, company, photos, ubication, category, rate }) => {
+            return (
+              <Banner
+                key={id}
+                id={id}
+                company={company}
+                photos={photos[0]}
+                ubication={ubication}
+                category={category}
+                rate={rate}
+              />
+            );
+          }
+        )}
       </Carousel>
     </>
   );
