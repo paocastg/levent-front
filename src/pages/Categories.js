@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, Row, Container } from "react-bootstrap";
 import CategoryCard from "../components/CategoryCard";
+import { FaLaptopHouse } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Categories({ posts, setPosts }) {
   const [queryParams, setQueryParams] = useState({
@@ -150,6 +152,11 @@ export default function Categories({ posts, setPosts }) {
               <option value="Food truck">Food truck</option>
               <option value="Pasteleria">Pasteleria</option>
             </Form.Select>
+            <div className="mt-5 mb-4">
+              <Link to="/signup">
+                <FaLaptopHouse /> Agrega tu empresa a nuestros proveedores
+              </Link>
+            </div>
           </div>
           <div className="col-md-9">
             {filteredPosts.length ? (
