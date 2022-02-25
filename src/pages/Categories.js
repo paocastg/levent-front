@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Form, Row, Container } from "react-bootstrap";
 import CategoryCard from "../components/CategoryCard";
-import { useSearchParams } from "react-router-dom";
 
 export default function Categories({ posts, setPosts }) {
   const [queryParams, setQueryParams] = useState({
@@ -13,7 +12,6 @@ export default function Categories({ posts, setPosts }) {
   });
   const [shallowSearch, setShallowSearch] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
-  let [searchParams, setSearchParams] = useSearchParams();
 
   const handleShallowSearch = (e) => {
     e.preventDefault();
