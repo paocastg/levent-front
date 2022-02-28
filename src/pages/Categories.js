@@ -9,7 +9,7 @@ export default function Categories({ posts, setPosts }) {
   const [queryParams, setQueryParams] = useState({
     ubication: "",
     category: "",
-    limit: "10",
+    limit: "20",
     company: "",
   });
   const [shallowSearch, setShallowSearch] = useState("");
