@@ -39,6 +39,8 @@ export default function Categories({ posts, setPosts }) {
 
     if (query.get("category")) {
       queryParams.category = query.get("category");
+      query.delete("category");
+      window.history.replaceState({}, "", `${window.location.pathname}`);
     }
 
     let params = Object.entries(queryParams).filter(([k, v]) => v !== "");
