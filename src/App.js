@@ -104,7 +104,6 @@ function App() {
             }
           />
         </Routes>
-
         <Footer />
       </AuthProvider>
     </>
