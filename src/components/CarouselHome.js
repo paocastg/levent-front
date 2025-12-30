@@ -5,78 +5,85 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import axios from "axios";
 
-// const banners = [
-//   {
-//     id: 0,
-//     company: "ChikyPau Eventos",
-//     photo:
-//       "https://res.cloudinary.com/paocast/image/upload/v1645300724/wayki/chikypau_fghsga.jpg",
-//     ubication: "La Libertad",
-//     category: "Animación",
-//     rate: "500",
-//   },
-//   {
-//     id: 1,
-//     company: "The Perfect Match",
-//     photo:
-//       "https://res.cloudinary.com/paocast/image/upload/v1645215074/wayki/fh9j4zqrousekpjchqhf.png",
-//     ubication: "Tumbes",
-//     category: "Event Planner",
-//     rate: "1500",
-//   },
-//   {
-//     id: 2,
-//     company: "Michilot Perú",
-//     photo:
-//       "https://res.cloudinary.com/paocast/image/upload/v1645215075/wayki/hkwgkom1pleux4bfz2mq.jpg",
-//     ubication: "La Libertad",
-//     category: "Video",
-//     rate: "1000",
-//   },
-//   {
-//     id: 3,
-//     company: "San Jonás Catering",
-//     photo:
-//       "https://res.cloudinary.com/paocast/image/upload/v1645215082/wayki/cywqfsy7xorcrnwf0zhx.png",
-//     ubication: "Ancash",
-//     category: "Catering",
-//     rate: "700",
-//   },
-// ];
+import Photo1 from "../assets/10.jpg";
+import Photo2 from "../assets/1437668392.jpg";
+import Photo3 from "../assets/portada.jpg";
+import Photo4 from "../assets/portada2.jpg";
 
 export default function CarouselHome() {
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const [queryParams] = useState({
-    published: 1,
-  });
+  const [queryParams] = useState({ published: 1 });
+
+  // ✅ Data local para probar el carrusel aunque la API no devuelva nada
+  const localBanners = [
+    {
+      id: "l1",
+      company: "Demo 1",
+      photos: [Photo1],
+      ubication: "Lima",
+      category: "Animación",
+      rate: "500",
+    },
+    {
+      id: "l2",
+      company: "Demo 2",
+      photos: [Photo2],
+      ubication: "Trujillo",
+      category: "Video",
+      rate: "1000",
+    },
+    {
+      id: "l3",
+      company: "Demo 3",
+      photos: [Photo3],
+      ubication: "Piura",
+      category: "Catering",
+      rate: "700",
+    },
+    {
+      id: "l4",
+      company: "Demo 4",
+      photos: [Photo4],
+      ubication: "Arequipa",
+      category: "Planner",
+      rate: "1500",
+    },
+  ];
 
   useEffect(() => {
-    let params = Object.entries(queryParams).filter(([k, v]) => v !== "");
+    const params = Object.entries(queryParams).filter(([k, v]) => v !== "");
 
     const fetchData = async () => {
-      if (params.length) {
-        const queryString = params
-          .map((arr) => `${arr[0]}=${arr[1]}`)
-          .reduce((k, v) => {
-            if (k !== "") {
-              let result = `${k}&${v}`;
-              return result;
-            } else {
-              return `${v}`;
-            }
-          }, "");
-        try {
-          const response = await axios.get(
-            `${process.env.REACT_APP_BASE_API_URL}/api/v1/posts?${queryString}`
-          );
-          setFilteredPosts(response.data.data);
-        } catch (error) {
-          console.log(error);
-        }
+      if (!params.length) return;
+
+      const queryString = params
+        .map(([k, v]) => `${k}=${v}`)
+        .join("&");
+
+      try {
+        console.log("BASE URL:", process.env.REACT_APP_BASE_API_URL);
+        console.log("QueryString:", queryString);
+
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_API_URL}/api/v1/posts?${queryString}`
+        );
+
+        console.log("API response:", response.data);
+        console.log("posts:", response.data?.data);
+
+        setFilteredPosts(response.data?.data || []);
+      } catch (error) {
+        console.log("Error fetching posts:", error);
+        setFilteredPosts([]); // por si falla, para que use el fallback
       }
     };
+
     fetchData();
   }, [queryParams]);
+
+  // ✅ si la API no trae nada, mostramos las imágenes locales
+  const dataToRender =
+    filteredPosts && filteredPosts.length > 0 ? filteredPosts : localBanners;
 
   return (
     <>
@@ -90,63 +97,44 @@ export default function CarouselHome() {
         autoPlay
         autoPlaySpeed={2000}
         centerMode={false}
-        className=""
         containerClass="container-with-dots"
-        dotListClass=""
         draggable
-        focusOnSelect={false}
         infinite
-        itemClass=""
         keyBoardControl
         minimumTouchDrag={80}
-        renderButtonGroupOutside={false}
-        renderDotsOutside={false}
         responsive={{
           desktop: {
-            breakpoint: {
-              max: 3000,
-              min: 1024,
-            },
+            breakpoint: { max: 3000, min: 1024 },
             items: 4,
             partialVisibilityGutter: 40,
           },
-          mobile: {
-            breakpoint: {
-              max: 464,
-              min: 0,
-            },
-            items: 1,
+          tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
             partialVisibilityGutter: 30,
           },
-          tablet: {
-            breakpoint: {
-              max: 1024,
-              min: 464,
-            },
-            items: 2,
+          mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
             partialVisibilityGutter: 30,
           },
         }}
         showDots={false}
-        sliderClass=""
         slidesToSlide={1}
         swipeable
       >
-        {filteredPosts.map(
-          ({ id, company, photos, ubication, category, rate }) => {
-            return (
-              <Banner
-                key={id}
-                id={id}
-                company={company}
-                photos={photos[0]}
-                ubication={ubication}
-                category={category}
-                rate={rate}
-              />
-            );
-          }
-        )}
+        {dataToRender.map(({ id, company, photos, ubication, category, rate }) => (
+          <Banner
+            key={id}
+            id={id}
+            company={company}
+            // ✅ evita que reviente si photos viene null o vacío
+            photos={photos?.[0]}
+            ubication={ubication}
+            category={category}
+            rate={rate}
+          />
+        ))}
       </Carousel>
     </>
   );
